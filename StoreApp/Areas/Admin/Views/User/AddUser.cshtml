@@ -1,0 +1,58 @@
+﻿@model UserDtoForCreation
+@{
+    ViewData["Title"] = "Add User";
+}
+
+<div class="text-center my-3">
+    <div class="display-6">Add User</div>
+</div>
+<form asp-action="AddUser" method="post">
+    <div class="text-danger" asp-validation-summary="All"></div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group my-3">
+                <label class="mb-1" asp-for="UserName"></label>
+                <input asp-for="UserName" class="form-control" />
+            </div>
+            <div class="form-group my-3">
+                <label class="mb-1" asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" />
+            </div>
+            <div class="form-group my-3">
+                <label class="mb-1" asp-for="Password"></label>
+                <input asp-for="Password" class="form-control" />
+            </div>
+            <div class="form-group my-3">
+                <label class="mb-1" asp-for="PhoneNumber"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group my-3">
+                <label class="mb-1" asp-for="Roles"></label>
+                @foreach (var item in Model.Roles)
+                {
+                    <div class="form-check my-3">
+                        <input id="@item" name="Roles" value="@item" class="form-check-input" type="checkbox" />
+                        <label for="@item" class="form-check-label">@item</label>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="btn-group d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa-solid fa-user-plus"></i>
+                    Add User
+                </button>
+                <a asp-action="Index" class="btn btn-outline-primary">
+                    <i class="fa-solid fa-list"></i>
+                    Users
+                </a>
+            </div>
+        </div>
+        <div class="col-md-6"></div>
+    </div>
+</form>

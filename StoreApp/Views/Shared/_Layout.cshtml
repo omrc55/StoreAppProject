@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - Store App</title>
+    <partial name="_Head" />
+</head>
+<body>
+    <header>
+        <partial name="_Navbar" />
+        @RenderSection("Header", false)
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <footer>
+        @RenderSection("Footer", false)
+        <partial name="_Footer" />
+    </footer>
+    <partial name="_FooterScripts" />
+    @await RenderSectionAsync("Scripts", false)
+</body>
+</html>

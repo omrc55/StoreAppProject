@@ -1,0 +1,20 @@
+﻿@page
+@model DemoModel
+@{
+    ViewData["Title"] = "Demo";
+}
+
+<div class="text-center my-3">
+    <h6 class="display-6">
+        Hello <strong>@Model?.FullName</strong>
+    </h6>
+    <p class="text-bg-danger">@HttpContext.Session.GetString("name")</p>
+</div>
+<div class="my-3 text-center">
+    <form method="post" asp-page="/Demo">
+        <div class="form-group">
+            <input class="form-control" name="name" placeholder="Enter your name" />
+            <input class="btn btn-primary my-3" type="submit" />
+        </div>
+    </form>
+</div>

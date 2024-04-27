@@ -1,0 +1,61 @@
+﻿<div class="row">
+    <div class="col-md-3">
+        <div class="card text-bg-primary text-center mb-3">
+            <div class="card-header">
+                Number of <br />
+                <strong>Products</strong>
+            </div>
+            <div class="card-body">
+                <h3 class="display-3">
+                    @await Component.InvokeAsync("ProductSummary")
+                </h3>
+                <a asp-controller="Product" asp-action="Index" class="card-link text-white">Products</a>
+                <a asp-controller="Product" asp-action="Create" class="card-link text-white">New Product</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-bg-warning text-center mb-3">
+            <div class="card-header">
+                Number of <br />
+                <strong>Categories</strong>
+            </div>
+            <div class="card-body">
+                <h3 class="display-3">
+                    @await Component.InvokeAsync("CategorySummary")
+                </h3>
+                <a asp-controller="Category" asp-action="Index" class="card-link text-black">Categories</a>
+                <a asp-controller="Category" asp-action="Create" class="card-link text-black">New Category</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-bg-danger text-center mb-3">
+            <div class="card-header">
+                Number of <br />
+                <strong>Order In Progress</strong>
+            </div>
+            <div class="card-body">
+                <h3 class="display-3">
+                    @await Component.InvokeAsync("OrderInProgress")
+                </h3>
+                <a asp-controller="Order" asp-action="Index" class="card-link text-white">Orders</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-bg-success text-center mb-3">
+            <div class="card-header">
+                Number of <br />
+                <strong>Users</strong>
+            </div>
+            <div class="card-body">
+                <h3 class="display-3">
+                    @await Component.InvokeAsync("UserSummary")
+                </h3>
+                <a asp-controller="User" asp-action="Index" class="card-link text-white">Users</a>
+                <a asp-controller="User" asp-action="AddUser" class="card-link text-white">New User</a>
+            </div>
+        </div>
+    </div>
+</div>

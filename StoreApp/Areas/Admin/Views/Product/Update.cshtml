@@ -1,0 +1,50 @@
+﻿@model ProductDtoForUpdate
+@{
+    ViewData["Title"] = "Product Update";
+}
+
+<div class="text-center my-3">
+    <div class="display-6">Product Update</div>
+</div>
+
+<form method="post" asp-action="Update" enctype="multipart/form-data">
+    <div class="text-danger" asp-validation-summary="All"></div>
+    <div class="form-group my-3">
+        <label asp-for="CategoryID" class="mb-1">Category</label>
+        <select class="form-control" asp-for="CategoryID" asp-items="@ViewBag.Categories"></select>
+    </div>
+    <input type="hidden" asp-for="ProductID" />
+    <div class="form-group my-3">
+        <label asp-for="ProductName" class="mb-1"></label>
+        <input asp-for="ProductName" class="form-control" />
+    </div>
+    <div class="form-group my-3">
+        <label asp-for="Summary" class="mb-1"></label>
+        <input asp-for="Summary" class="form-control" />
+    </div>
+    <div class="form-group my-3">
+        <label asp-for="Price" class="mb-1"></label>
+        <input asp-for="Price" class="form-control" />
+    </div>
+    <div class="form-check form-switch my-3">
+        <input asp-for="ShowCase" class="form-check-input" type="checkbox" />
+        <label asp-for="ShowCase" class="form-check-label"> List the product in the showcase.</label>
+    </div>
+    <div class="form-group my-3">
+        <img class="rounded shadow" width="150" src="@Model.ImageUrl"/>
+    </div>
+    <div class="form-group my-3">
+        <label asp-for="ImageUrl" class="mb-1"></label>
+        <input type="file" name="file" class="form-control" />
+    </div>
+    <div class="btn-group my-3">
+        <button type="submit" class="btn btn-primary">
+            <i class="fa-solid fa-floppy-disk"></i>
+            Update
+        </button>
+        <a asp-action="Index" class="btn btn-outline-primary">
+            <i class="fa-solid fa-list"></i>
+            Products
+        </a>
+    </div>
+</form>

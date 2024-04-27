@@ -1,0 +1,18 @@
+﻿@page
+@model StoreApp.Pages.CompleteModel
+@{
+    ViewData["Title"] = "Thanks";
+}
+
+<div class="text-center my-3">
+    <div class="display-6">Thanks!</div>
+    <p>Thanks for placing order #<strong>@OrderId</strong></p>
+    <p>We'll ship your goods as soon as possible.</p>
+    <a class="btn btn-primary" asp-controller="Home" asp-action="Index">Return to Store</a>
+</div>
+
+@functions
+{
+    [BindProperty(SupportsGet = true)]
+    public string? OrderId { get; set; }
+}

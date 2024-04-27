@@ -1,0 +1,54 @@
+﻿@page "/Cart"
+@model CartModel
+@{
+    ViewData["Title"] = "Cart";
+}
+
+<div class="text-center my-3">
+    <h6 class="display-6">Cart (@Model.Cart?.Lines.Count())</h6>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Subtotal</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var line in Model.Cart?.Lines ?? Enumerable.Empty<CartLine>())
+        {
+            <tr>
+                <td>@line.Product.ProductName</td>
+                <td>@line.Quantity</td>
+                <td>@line.Product.Price.ToString("c")</td>
+                <td>@((line.Product.Price * line.Quantity).ToString("c2"))</td>
+                <td>
+                    <form method="post" asp-page-handler="Remove">
+                        <input type="hidden" name="id" value="@line.Product.ProductID" />
+                        <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+                        <button type="submit" class="btn btn-sm btn-danger">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3" class="text-right">Total:</td>
+            <td class="text-danger">@Model.Cart?.ComputeTotalValue().ToString("c")</td>
+            <td></td>
+        </tr>
+    </tfoot>
+</table>
+<div class="text-center my-3">
+    <div class="btn-group">
+        <a class="btn btn-outline-primary" href="@Model?.ReturnUrl">Contuniue Shopping</a>
+        <a class="btn btn-primary"asp-controller="Order" asp-action="Checkout">Checkout</a>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+﻿@model IEnumerable<IdentityUser>
+@{
+    ViewData["Title"] = "Users";
+}
+
+<div class="text-center my-3">
+    <div class="display-6">Users</div>
+</div>
+<div class="d-flex justify-content-end my-3">
+    <a class="btn btn-outline-success" asp-action="AddUser">
+        <i class="fa-solid fa-plus"></i>
+        Add User
+    </a>
+</div>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>User Name</th>
+            <th>Email</th>
+            <th>Roles</th>
+            <th>Operations</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (IdentityUser user in Model)
+        {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.UserName</td>
+                <td>@user.Email</td>
+                <td user-name="@user.UserName" user-role=""></td>
+                <td>
+                    <div class="btn-group">
+                        <a class="btn btn-sm btn-warning" asp-action="UserUpdate" asp-route-id="@user.UserName">Update</a>
+                        <a class="btn btn-sm btn-info" asp-action="ResetPassword" asp-route-id="@user.UserName">Reset Password</a>
+                        <a class="btn btn-sm btn-danger">Delete</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

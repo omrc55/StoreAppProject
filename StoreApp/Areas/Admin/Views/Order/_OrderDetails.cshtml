@@ -1,0 +1,50 @@
+﻿@model Order
+@{
+    var total = Model.Lines.Sum(c => c.Product.Price * c.Quantity);
+}
+<div class="row shadow my-3 rounded-5">
+    <div class="col-md-3 border-1 border-dark p-3 shadow text-center rounded-5">
+        <h5 class="display-5 text-center">
+            <i class="fa-solid fa-address-book text-danger"></i>
+            <br />
+            @Model.Name
+        </h5>
+        <p>@Model.Line1 @Model.Line2 @Model.Line3 @Model.City</p>
+        <p class="p-3">
+            <span class="rounded bg-warning p-2">Shipped</span>
+            <span class="rounded @(Model.Shipped?"bg-success":"bg-danger") text-white p-2">@(Model.Shipped ? "Completed" : "In Progress")</span>
+        </p>
+        <span class="text-bg-dark p-2 rounded">
+            @(Model.GiftWrap ? "Gift" : "")
+        </span>
+    </div>
+    <div class="col-md-9">
+        <h6 class="display-6 mt-3 text-center">
+            Cart
+        </h6>
+        <ul class="list-group">
+            @foreach (var cartItem in Model.Lines)
+            {
+                <li class="list-group-item d-flex justify-content-between brand">
+                    @cartItem.Product.ProductName
+                    <b>@cartItem.Quantity X @cartItem.Product.Price.ToString("c") = @((cartItem.Quantity * cartItem.Product.Price).ToString("c"))</b>
+                </li>
+            }
+            <li class="list-group-item d-flex justify-content-between text-danger">
+                Total
+                <b>@total.ToString("c")</b>
+            </li>
+        </ul>
+        @if (!Model.Shipped)
+        {
+            <div class="text-center my-3">
+                <form method="post" asp-action="Complete">
+                    <input type="hidden" name="id" value="@Model.OrderID" />
+                    <button type="submit" class="btn btn-primary" disabled="@Model.Shipped">
+                        Complete
+                    </button>
+                </form>
+            </div>
+        }
+    </div>
+</div>
